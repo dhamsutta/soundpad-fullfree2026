@@ -26,6 +26,7 @@
       max-width: 700px;
       margin: 0 auto;
       padding-left: 0;
+      padding-bottom: 120px; /* เพิ่มพื้นที่ด้านล่างเพื่อไม่ให้แถบลอยไปบังเนื้อหาตอนสุดท้าย */
     }
     ul#audioList li {
       margin: 15px 0;
@@ -35,26 +36,48 @@
       padding: 10px;
       border-radius: 8px;
     }
+    
+    /* 🎯 ปรับแต่งปุ่มฟังธรรมให้เท่ากันและเป็นระเบียบเรียบร้อย */
     ul#audioList button {
       margin-right: 12px;
-      padding: 5px 12px;
+      padding: 5px 0;
+      width: 75px;             /* ล็อกความกว้างปุ่มให้เท่ากันทุกตอน */
+      text-align: center;      /* จัดให้อยู่กึ่งกลางปุ่ม */
       background: #6b4c2f;
       color: white;
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      flex-shrink: 0;
+      flex-shrink: 0;          /* ล็อกขนาดไม่ให้โย้เย้เวลาเปิดบนมือถือ */
+      font-family: 'Sarabun', sans-serif;
+      font-size: 15px;
     }
     ul#audioList span {
       font-size: 18px;
       white-space: pre-wrap;
       line-height: 1.6;
     }
+    
+    /* 🎯 ตัวเครื่องเล่นเสียง */
     audio {
       display: block;
-      margin: 30px auto 10px auto;
       width: 100%;
       max-width: 700px;
+      margin: 0 auto; /* จัดเครื่องเล่นให้อยู่กึ่งกลางกล่อง */
+      box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    /* 🎯 แถบควบคุมสีครีมลอยติดหนึบด้านล่างหน้าจอ */
+    .audio-player-container {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #f9f3e7;
+      padding: 15px 20px;
+      box-sizing: border-box;
+      z-index: 1000;
+      border-top: 3px solid #6b4c2f;
     }
   </style>
 </head>
@@ -70,10 +93,12 @@
 
 <ul id="audioList"></ul>
 
-<audio id="audioPlayer" controls>
-  <source src="">
-  เบราว์เซอร์ของคุณไม่รองรับการเล่นเสียง
-</audio>
+<div class="audio-player-container">
+  <audio id="audioPlayer" controls>
+    <source src="">
+    เบราว์เซอร์ของคุณไม่รองรับการเล่นเสียง
+  </audio>
+</div>
 
 <script>
   const episodes = [
@@ -101,58 +126,52 @@
       title: "อานิสงส์ของการให้ทาน/โทษของการตระหนี่\nอานิสงส์ของการรักษาศีล/โทษของการทุศีล\nอานิสงส์ของเนกขัมมะบารมี/โทษของการติดในกาม\nอานิสงส์ของปัญญา/โทษของการไม่รู้\nอานิสงส์ของขันติบารมี/โทษของโทสะ",
       url: "https://archive.org/download/athakatha/pakinnaka6_3.mp3"
     },
-
-{
-  title: "อานิสงส์ของวิริยบารมี/โทษของการขาดความเพียร\nอานิสงส์ของสัจจะบารมี/โทษของการไม่มีสัจจะ\nอานิสงส์ของอธิษฐานบารมี/โทษของการไม่ตั้งอธิษฐาน\nอานิสงส์ของเมตตาบารมี/โทษของการขาดเมตตา\nอานิสงส์ของอุเบกขาบารมี/โทษของการขาดอุเบกขา",
+    {
+      title: "อานิสงส์ของวิริยบารมี/โทษของการขาดความเพียร\nอานิสงส์ของสัจจะบารมี/โทษของการไม่มีสัจจะ\nอานิสงส์ของอธิษฐานบารมี/โทษของการไม่ตั้งอธิษฐาน\nอานิสงส์ของเมตตาบารมี/โทษของการขาดเมตตา\nอานิสงส์ของอุเบกขาบารมี/โทษของการขาดอุเบกขา",
       url: "https://archive.org/download/athakatha/pakinnaka6_4.mp3"
-},
- {
-    title: "จรณธรรม ๑๕ อภิญญา ๕/บริวารของจรณธรรม\nปัญหาข้อ๗ อะไรเป็นความเศร้าหมองของบารมี ๑๐",
+    },
+    {
+      title: "จรณธรรม ๑๕ อภิญญา ๕/บริวารของจรณธรรม\nปัญหาข้อ๗ อะไรเป็นความเศร้าหมองของบารมี ๑๐",
       url: "https://archive.org/download/athakatha/pakinnaka6_5.mp3"
     },
-
-{
-  title: "ปัญหาข้อ๘ อะไรคือความผ่องแผ้วของบารมี ๑๐\nปัญหาข้อ๙ อะไรเป็นปฏิปักษ์ต่อการสร้างบารมี ๑๐",
-      url: "https://archive.org/download/athakatha/pakinnaka6_6.mp3"
-  },
-
-{
-  title: "ปัญหาข้อ๑๐ อะไรเป็นข้อปฏิบัติ\nอะไรเป็นข้อปฏิบัติของทาน\nอะไรเป็นข้อปฏิบัติของศีล",
-      url: "https://archive.org/download/athakatha/pakinnaka6_7.mp3"
-},
-{
-  title: "ข้อประพฤติ ปฎิบัติของจารีตศีล",
-      url: "https://archive.org/download/athakatha/pakinnaka6_8.mp3"
-},
-{
-  title: "อะไรเป็นข้อปฏิบัติของเนกขัมมะ\nอะไรเป็นข้อปฏิบัติของปัญญา",
-      url: "https://archive.org/download/athakatha/pakinnaka6_9.mp3"
-},
- {
-   title: "อะไรเป็นข้อปฏิบัติของวิริยะ\nอะไรเป็นข้อปฏิบัติของขันติ\nอะไรเป็นข้อปฏิบัติของสัจจะ\nอะไรเป็นข้อปฏิบัติของอธิษฐาน",
-      url: "https://archive.org/download/athakatha/pakinnaka6_10.mp3"
-},
-{
-  title: "สรุป อะไรเป็นข้อปฏิบัติของทั้งหมด",
-      url: "https://archive.org/download/athakatha/pakinnaka6_11.mp3"
-  },
- {
-   title: "ปัญหาข้อ๑๑ อะไรเป็นการจำแนก\nปัญหาข้อ๑๒ อะไรเป็นการสงเคราะห์",
-      url: "https://archive.org/download/athakatha/pakinnaka6_12.mp3"
-},
- {
-   title: "ปัญหาข้อ๑๓ อะไรเป็นอุบายให้สำเร็จ\nปัญหาข้อ๑๔ ให้สำเร็จประโยชน์โดยกาลไหน",
-      url: "https://archive.org/download/athakatha/pakinnaka6_13.mp3"
-},
-{
-  title: "ปัญหาข้อ๑๕ อะไรเป็นอานิสงส์ของการสร้างบารมี\nปัญหาข้อ๑๖ อะไรเป็นผลแห่งการสร้างบารมี",
-      url: "https://archive.org/download/athakatha/pakinnaka6_14.mp3"
-},
-  
-
-
     {
-       title: "อธิบายคาถา ที่๑ จงปรารภความเพียร\nอธิบายคาถา ที่ ๒ ความวิวาท\nอธิบายคาถา ที่ ๓ ความประมาท\nบทสรุป-ให้พร",
+      title: "ปัญหาข้อ๘ อะไรคือความผ่องแผ้วของบารมี ๑๐\nปัญหาข้อ๙ อะไรเป็นปฏิปักษ์ต่อการสร้างบารมี ๑๐",
+      url: "https://archive.org/download/athakatha/pakinnaka6_6.mp3"
+    },
+    {
+      title: "ปัญหาข้อ๑๐ อะไรเป็นข้อปฏิบัติ\nอะไรเป็นข้อปฏิบัติของทาน\nอะไรเป็นข้อปฏิบัติของศีล",
+      url: "https://archive.org/download/athakatha/pakinnaka6_7.mp3"
+    },
+    {
+      title: "ข้อประพฤติ ปฎิบัติของจารีตศีล",
+      url: "https://archive.org/download/athakatha/pakinnaka6_8.mp3"
+    },
+    {
+      title: "อะไรเป็นข้อปฏิบัติของเนกขัมมะ\nอะไรเป็นข้อปฏิบัติของปัญญา",
+      url: "https://archive.org/download/athakatha/pakinnaka6_9.mp3"
+    },
+    {
+      title: "อะไรเป็นข้อปฏิบัติของวิริยะ\nอะไรเป็นข้อปฏิบัติของขันติ\nอะไรเป็นข้อปฏิบัติของสัจจะ\nอะไรเป็นข้อปฏิบัติของอธิษฐาน",
+      url: "https://archive.org/download/athakatha/pakinnaka6_10.mp3"
+    },
+    {
+      title: "สรุป อะไรเป็นข้อปฏิบัติของทั้งหมด",
+      url: "https://archive.org/download/athakatha/pakinnaka6_11.mp3"
+    },
+    {
+      title: "ปัญหาข้อ๑๑ อะไรเป็นการจำแนก\nปัญหาข้อ๑๒ อะไรเป็นการสงเคราะห์",
+      url: "https://archive.org/download/athakatha/pakinnaka6_12.mp3"
+    },
+    {
+      title: "ปัญหาข้อ๑๓ อะไรเป็นอุบายให้สำเร็จ\nปัญหาข้อ๑๔ ให้สำเร็จประโยชน์โดยกาลไหน",
+      url: "https://archive.org/download/athakatha/pakinnaka6_13.mp3"
+    },
+    {
+      title: "ปัญหาข้อ๑๕ อะไรเป็นอานิสงส์ของการสร้างบารมี\nปัญหาข้อ๑๖ อะไรเป็นผลแห่งการสร้างบารมี",
+      url: "https://archive.org/download/athakatha/pakinnaka6_14.mp3"
+    },
+    {
+      title: "อธิบายคาถา ที่๑ จงปรารภความเพียร\nอธิบายคาถา ที่ ๒ ความวิวาท\nอธิบายคาถา ที่ ๓ ความประมาท\nบทสรุป-ให้พร",
       url: "https://archive.org/download/athakatha/pakinnaka6_15.mp3"
     }
   ];
