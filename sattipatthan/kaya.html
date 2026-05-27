@@ -33,16 +33,23 @@
       display: flex;
       align-items: center;
     }
+    
+    /* แก้ไขส่วนนี้เพื่อให้ปุ่มเท่ากันเป็นระเบียบ */
     ul#audioList button {
       margin-right: 10px;
-      padding: 5px 12px;
+      padding: 5px 0;
+      width: 75px;             /* ล็อคความกว้างปุ่มให้เท่ากันทุกตอน */
+      text-align: center;      /* จัดให้อยู่กึ่งกลาง */
       background: #6b4c2f;
       color: white;
       border: none;
       border-radius: 5px;
       cursor: pointer;
+      flex-shrink: 0;          /* ล็อคขนาดไม่ให้โย้เย้เวลาเปิดบนมือถือ */
+      font-family: 'Sarabun', sans-serif;
+      font-size: 15px;
     }
-    
+
     /* ตัวเครื่องเล่นเสียง */
     audio {
       display: block;
@@ -133,12 +140,6 @@
 
     const button = document.createElement("button");
     button.textContent = "▶️ ฟัง";
-    button.style.marginRight = "10px";
-    button.style.padding = "5px 12px";
-    button.style.background = "#6b4c2f";
-    button.style.color = "white";
-    button.style.border = "none";
-    button.style.borderRadius = "5px";
 
     button.onclick = () => {
       audioPlayer.src = item.url;
