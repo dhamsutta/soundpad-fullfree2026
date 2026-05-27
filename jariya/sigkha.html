@@ -26,6 +26,7 @@
       max-width: 700px;
       margin: 0 auto;
       padding-left: 0;
+      padding-bottom: 120px; /* เพิ่มพื้นที่ด้านล่างเพื่อไม่ให้แถบลอยไปบังเนื้อหาตอนสุดท้าย */
     }
     ul#audioList li {
       margin: 15px 0;
@@ -35,45 +36,65 @@
       padding: 10px;
       border-radius: 8px;
     }
+    
+    /* 🎯 ปรับแต่งปุ่มฟังธรรมให้เท่ากันและเป็นระเบียบเรียบร้อย */
     ul#audioList button {
       margin-right: 12px;
-      padding: 5px 12px;
+      padding: 5px 0;
+      width: 75px;             /* ล็อกความกว้างปุ่มให้เท่ากันทุกตอน */
+      text-align: center;      /* จัดให้อยู่กึ่งกลางปุ่ม */
       background: #6b4c2f;
       color: white;
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      flex-shrink: 0;
+      flex-shrink: 0;          /* ล็อกขนาดไม่ให้โย้เย้เวลาเปิดบนมือถือ */
+      font-family: 'Sarabun', sans-serif;
+      font-size: 15px;
     }
     ul#audioList span {
       font-size: 18px;
       white-space: pre-wrap;
       line-height: 1.6;
     }
+    
+    /* 🎯 ตัวเครื่องเล่นเสียง */
     audio {
       display: block;
-      margin: 30px auto 10px auto;
       width: 100%;
       max-width: 700px;
+      margin: 0 auto; /* จัดเครื่องเล่นให้อยู่กึ่งกลางกล่อง */
+      box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    /* 🎯 แถบควบคุมสีครีมลอยติดหนึบด้านล่างหน้าจอ */
+    .audio-player-container {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #f9f3e7;
+      padding: 15px 20px;
+      box-sizing: border-box;
+      z-index: 1000;
+      border-top: 3px solid #6b4c2f;
     }
   </style>
 </head>
 <body>
 
-<div style="max-width: 800px; margin: 0 auto 20px auto; padding: 20px; background-color: #f9f3e7; border-left: 5px solid #6b4c2f; border-radius: 8px; font-family: 'Sarabun', sans-serif; font-size: 18px; line-height: 1.7; color: #333;">
-  <strong>จริยาปิฎก</strong> เป็นคัมภีร์หนึ่งในชุด <strong>ขุททกนิกาย</strong> ของพระไตรปิฎกฝ่ายเถรวาท ว่าด้วยการประพฤติ (จริยา) ของพระมหาโพธิสัตว์  
-  เนื้อหาในคัมภีร์นี้เป็นเรื่องราวการบำเพ็ญบารมีก่อนการตรัสรู้เป็นพระสัมมาสัมพุทธเจ้า
-</div>
 
 <h1>📚 จริยาปิฎก</h1>
 <h2>การสร้างศีลบารมีของพระมหาโพธิสัตว์ ๑๐ ชาติ</h2>
 
 <ul id="audioList"></ul>
 
-<audio id="audioPlayer" controls>
-  <source src="">
-  เบราว์เซอร์ของคุณไม่รองรับการเล่นเสียง
-</audio>
+<div class="audio-player-container">
+  <audio id="audioPlayer" controls>
+    <source src="">
+    เบราว์เซอร์ของคุณไม่รองรับการเล่นเสียง
+  </audio>
+</div>
 
 <script>
   const episodes = [
