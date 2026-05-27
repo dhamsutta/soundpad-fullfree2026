@@ -26,46 +26,68 @@
       max-width: 700px;
       margin: 0 auto;
       padding-left: 0;
+      padding-bottom: 120px; /* เพิ่มพื้นที่ด้านล่างเพื่อไม่ให้แถบลอยไปบังเนื้อหาตอนสุดท้าย */
     }
     ul#audioList li {
       margin: 10px 0;
       display: flex;
       align-items: center;
     }
+    
+    /* 🎯 ปรับแต่งปุ่มฟังธรรมให้เท่ากันและเป็นระเบียบเรียบร้อย */
     ul#audioList button {
       margin-right: 10px;
-      padding: 5px 12px;
+      padding: 5px 0;
+      width: 75px;             /* ล็อกความกว้างปุ่มให้เท่ากันทุกตอน */
+      text-align: center;      /* จัดให้อยู่กึ่งกลางปุ่ม */
       background: #6b4c2f;
       color: white;
       border: none;
       border-radius: 5px;
       cursor: pointer;
+      flex-shrink: 0;          /* ล็อกขนาดไม่ให้โย้เย้เวลาเปิดบนมือถือ */
+      font-family: 'Sarabun', sans-serif;
+      font-size: 15px;
     }
+
+    /* 🎯 ตัวเครื่องเล่นเสียง */
     audio {
       display: block;
-      margin: 20px auto;
       width: 100%;
       max-width: 700px;
+      margin: 0 auto; /* จัดเครื่องเล่นให้อยู่กึ่งกลางกล่อง */
+      box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    /* 🎯 แถบควบคุมสีครีมลอยติดหนึบด้านล่างหน้าจอ */
+    .audio-player-container {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #f9f3e7;
+      padding: 15px 20px;
+      box-sizing: border-box;
+      z-index: 1000;
+      border-top: 3px solid #6b4c2f;
     }
   </style>
 </head>
 <body>
 
-<div style="background-color: #f9f3e7; border-left: 5px solid rgb(107, 76, 47); border-radius: 8px; color: #333333; font-family: Sarabun, sans-serif; font-size: 18px; line-height: 1.7; margin: 0px auto 20px; max-width: 800px; padding: 20px;">
-  <strong><div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgdx9z9YRQ9eaE_KK2JG1cLxt6XINkdWivLTzpAksuSEigE5DKKxgNai11ux3MWryEOxbYizk91tQHYPgSeSsqAseyCecw8uQsKIwLBZAgtccspWkDxBpIkpqDEksFTe0SbR3UEeMliZKm6MCHSa1BUfawynr0zQlK8okZNm0p8LYGMC0aaJ1U6AWfdTPTC/s1600/006-5-diani-buddha.jpg" imageanchor="1" style="clear: right; float: right; margin-bottom: 1em; margin-left: 1em;"><img border="0" data-original-height="1600" data-original-width="1525" height="200" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgdx9z9YRQ9eaE_KK2JG1cLxt6XINkdWivLTzpAksuSEigE5DKKxgNai11ux3MWryEOxbYizk91tQHYPgSeSsqAseyCecw8uQsKIwLBZAgtccspWkDxBpIkpqDEksFTe0SbR3UEeMliZKm6MCHSa1BUfawynr0zQlK8okZNm0p8LYGMC0aaJ1U6AWfdTPTC/w191-h200/006-5-diani-buddha.jpg" width="191" /></a></div>พุทธวงศ์</strong> หมายถึง สายของพระพุทธเจ้า พระโคตมพุทธเจ้าได้ตรัสเรื่องพุทธวงศ์ไว้คราวประทับ ณ นิโครธาราม ระหว่างการเสด็จนิวัตกรุงกบิลพัสดุ์ (หลังตรัสรู้) การสืบสายพุทธวงศ์ไม่ได้มาจากการสืบสายโลหิตหรือการชิงอำนาจปราบดาภิเษกอย่างการสืบราชสมบัติ แต่มาจากสั่งสมบำเพ็ญบารมีและรับพยากรณ์จากพระพุทธเจ้าในอดีต 
 
-ในการสังคายนาครั้งที่ ๑ ในศาสนาพุทธ พระอรหันต์สาวกที่ร่วมสังคายนาได้จัดให้เรื่อง "พุทธวงศ์" นี้เป็นคัมภีร์หนึ่งในหมวดอปทาน(การเล่าประวัติ) ขุททกนิกาย พระสุตตันตปิฎกในพระไตรปิฎกภาษาบาลี ศาสนาพุทธเชื่อว่าพระพุทธเจ้าในอดีตมีจำนวนมากมายนับไม่ถ้วน แต่พระพุทธเจ้าในอดีตที่พระโคตมพุทธเจ้าทรงนับเข้าในพุทธวงศ์ของพระองค์มีอยู่ ๒๔ พระองค์ เพราะ ๒๔ พระองค์นี้เป็นผู้ประทานพยากรณ์ว่าพระโคตมโพธิสัตว์จะได้ตรัสรู้เป็นพระพุทธเจ้าในอนาคต เมื่อรวมพระโคตมพุทธเจ้าด้วย จึงมีพระพุทธเจ้าทั้งสิ้น ๒๕ พระองค์ในพุทธวงศ์
-</div>
 
   <h1>📚 คัมภีร์พุทธวงศ์</h1>
-  <h2>พระพุทธเจ้า ๒๕ พระองค์ (มี ๔๑ ตอน)</h2>
+  <h2>พระพุทธเจ้า ๒๕ พระองค์</h2>
 
   <ul id="audioList"></ul>
 
-  <audio id="audioPlayer" controls>
-    <source src="">
-    เบราว์เซอร์ของคุณไม่รองรับการเล่นเสียง
-  </audio>
+  <div class="audio-player-container">
+    <audio id="audioPlayer" controls>
+      <source src="">
+      เบราว์เซอร์ของคุณไม่รองรับการเล่นเสียง
+    </audio>
+  </div>
 
  <script>
   const episodes = [
@@ -77,8 +99,8 @@
     { title: "ตอนที่ ๖ เสด็จถึงราชคฤห์ โปรดพระเจ้าพิมพิสาร", url: "https://archive.org/download/buddha-wong-01/6.mp3" },
     { title: "ตอนที่ ๗ อธิบายอรรถกถา รัตนจังกมนกัณฑ์", url: "https://archive.org/download/buddha-wong-01/7.mp3" },
     { title: "ตอนที่ ๘ วงศ์ของพระทีปังกรพุทธเจ้า พระพุทธเจ้าองค์ที่ ๑", url: "https://archive.org/download/buddha-wong-01/8.mp3" },
-    {title: "ตอนที่ ๙ ความปรารถนาของท่านสุเมธดาบส ตอนที่ ๑", url: "https://archive.org/download/buddha-wong-01/9.mp3" },
-     { title: "ตอนที่ ๑๐ ความปรารถนาของท่านสุเมธดาบส ตอนที่ ๒", url: "https://archive.org/download/buddha-wong-01/10.mp3" },
+    { title: "ตอนที่ ๙ ความปรารถนาของท่านสุเมธดาบส ตอนที่ ๑", url: "https://archive.org/download/buddha-wong-01/9.mp3" },
+    { title: "ตอนที่ ๑๐ ความปรารถนาของท่านสุเมธดาบส ตอนที่ ๒", url: "https://archive.org/download/buddha-wong-01/10.mp3" },
     { title: "ตอนที่ ๑๑ ความปรารถนาของท่านสุเมธดาบส ตอนที่ ๓", url: "https://archive.org/download/buddha-wong-01/11.mp3" },
     { title: "ตอนที่ ๑๒ ศีลบารมี - ขันติบารมี - สัจจะบารมี", url: "https://archive.org/download/buddha-wong-01/12.mp3" },
     { title: "ตอนที่ ๑๓ วงศ์พระโกณฑัญญะพุทธเจ้า พระพุทธเจ้าองค์ที่ ๒", url: "https://archive.org/download/buddha-wong-01/13.mp3" },
@@ -86,7 +108,7 @@
     { title: "ตอนที่ ๑๕ วงศ์พระสุมนพุทธเจ้า พระพุทธเจ้าองค์ที่ ๔", url: "https://archive.org/download/buddha-wong-01/15.mp3" },
     { title: "ตอนที่ ๑๖ วงศ์พระเรวตพุทธเจ้า พระพุทธเจ้าองค์ที่ ๕", url: "https://archive.org/download/buddha-wong-01/16.mp3" },
     { title: "ตอนที่ ๑๗ พระพุทธเจ้ากับการเจริญมงคล", url: "https://archive.org/download/buddha-wong-01/17.mp3" },
-     { title: "ตอนที่ ๑๘ วงศ์พระโสภิตพุทธเจ้า พระพุทธเจ้าองค์ที่ ๖", url: "https://archive.org/download/buddha-wong-01/18.mp3" },
+    { title: "ตอนที่ ๑๘ วงศ์พระโสภิตพุทธเจ้า พระพุทธเจ้าองค์ที่ ๖", url: "https://archive.org/download/buddha-wong-01/18.mp3" },
     { title: "ตอนที่ ๑๙ วงศ์พระอโนมทัสสีพุทธเจ้า พระพุทธเจ้าองค์ที่ ๗", url: "https://archive.org/download/buddha-wong-01/19.mp3" },
     { title: "ตอนที่ ๒๐ พุทธะพยากรณ์ให้ท่านพระสารีบุตร", url: "https://archive.org/download/buddha-wong-01/20.mp3" },
     { title: "ตอนที่ ๒๑ วงศ์พระปทุมพุทธเจ้า พระพุทธเจ้าองค์ที่ ๘", url: "https://archive.org/download/buddha-wong-01/21.mp3" },
@@ -94,15 +116,15 @@
     { title: "ตอนที่ ๒๓ วงศ์พระปทุมุตรพุทธเจ้า พระพุทธเจ้าองค์ที่ ๑๐", url: "https://archive.org/download/buddha-wong-01/23.mp3" },
     { title: "ตอนที่ ๒๔ วงศ์พระสุเมธพุทธเจ้า พระพุทธเจ้าองค์ที่ ๑๑", url: "https://archive.org/download/buddha-wong-01/24.mp3" },
     { title: "ตอนที่ ๒๕ วงศ์พระสุชาตพุทธเจ้า พระพุทธเจ้าองค์ที่ ๑๒", url: "https://archive.org/download/buddha-wong-01/25.mp3" },
-     { title: "ตอนที่ ๒๖ วงศ์พระปิยทัสสีพุทธเจ้า พระพุทธเจ้าองค์ที่ ๑๓", url: "https://archive.org/download/buddha-wong-01/26.mp3" },
+    { title: "ตอนที่ ๒๖ วงศ์พระปิยทัสสีพุทธเจ้า พระพุทธเจ้าองค์ที่ ๑๓", url: "https://archive.org/download/buddha-wong-01/26.mp3" },
     { title: "ตอนที่ ๒๗ วงศ์พระอัตถทัสสีพุทธเจ้า พระพุทธเจ้าองค์ที่ ๑๔", url: "https://archive.org/download/buddha-wong-01/27.mp3" },
     { title: "ตอนที่ ๒๘ วงศ์พระธัมมทัสสีพุทธเจ้า พระพุทธเจ้าองค์ที่ ๑๕", url: "https://archive.org/download/buddha-wong-01/28.mp3" },
-    { title: "ตอนที่ ๒๙ วงศ์พระสิทธัตถพุทธเจ้า พระพุทธเจ้าองค์ที่ ๑๖", url: "https://archive.org/download/buddha-wong-01/29.mp3" },
+    { title: "ตอนที่ ๒๙ วงศ์พระสิทธัตถพุทธเจ้า พระhtmlพุทธเจ้าองค์ที่ ๑๖", url: "https://archive.org/download/buddha-wong-01/29.mp3" },
     { title: "ตอนที่ ๓๐ วงศ์พระติสสพุทธเจ้า พระพุทธเจ้าองค์ที่ ๑๗", url: "https://archive.org/download/buddha-wong-01/30.mp3" },
     { title: "ตอนที่ ๓๑ วงศ์พระปุสสพุทธเจ้า พระพุทธเจ้าองค์ที่ ๑๘", url: "https://archive.org/download/buddha-wong-01/31.mp3" },
     { title: "ตอนที่ ๓๒ วงศ์พระวิปัสสีพุทธเจ้า พระพุทธเจ้าองค์ที่ ๑๙", url: "https://archive.org/download/buddha-wong-01/32.mp3" },
     { title: "ตอนที่ ๓๓ วงศ์พระสิขีพุทธเจ้า พระพุทธเจ้าองค์ที่ ๒๐", url: "https://archive.org/download/buddha-wong-01/33.mp3" },
-     { title: "ตอนที่ ๓๔ วงศ์พระเวสสภูพุทธเจ้า พระพุทธเจ้าองค์ที่ ๒๑", url: "https://archive.org/download/buddha-wong-01/34.mp3" },
+    { title: "ตอนที่ ๓๔ วงศ์พระเวสสภูพุทธเจ้า พระพุทธเจ้าองค์ที่ ๒๑", url: "https://archive.org/download/buddha-wong-01/34.mp3" },
     { title: "ตอนที่ ๓๕ วงศ์พระกกุสันธพุทธเจ้า พระพุทธเจ้าองค์ที่ ๒๒", url: "https://archive.org/download/buddha-wong-01/35.mp3" },
     { title: "ตอนที่ ๓๖ มารตัชชนียสูตร", url: "https://archive.org/download/buddha-wong-01/36.mp3" },
     { title: "ตอนที่ ๓๗ วงศ์พระโกนาคมนพุทธเจ้า พระพุทธเจ้าองค์ที่ ๒๓", url: "https://archive.org/download/buddha-wong-01/37.mp3" },
@@ -110,20 +132,6 @@
     { title: "ตอนที่ ๓๙ วงศ์พระกัสสปพุทธเจ้า พระพุทธเจ้าองค์ที่ ๒๔", url: "https://archive.org/download/buddha-wong-01/39.mp3" },
     { title: "ตอนที่ ๔๐ วงศ์พระโคตมพุทธเจ้า พระพุทธเจ้าองค์ที่ ๒๕", url: "https://archive.org/download/buddha-wong-01/40.mp3" },
     { title: "ตอนที่ ๔๑ กัณฑ์ปกิณกะ", url: "https://archive.org/download/buddha-wong-01/41.mp3" }
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
   ];
 
   const listContainer = document.getElementById("audioList");
@@ -142,12 +150,6 @@
 
     const button = document.createElement("button");
     button.textContent = "▶️ ฟัง";
-    button.style.marginRight = "10px";
-    button.style.padding = "5px 12px";
-    button.style.background = "#6b4c2f";
-    button.style.color = "white";
-    button.style.border = "none";
-    button.style.borderRadius = "5px";
 
     button.onclick = () => {
       audioPlayer.src = item.url;
