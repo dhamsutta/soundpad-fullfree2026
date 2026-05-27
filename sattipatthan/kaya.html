@@ -26,6 +26,7 @@
       max-width: 700px;
       margin: 0 auto;
       padding-left: 0;
+      padding-bottom: 120px; /* เพิ่มพื้นที่ด้านล่างเพื่อไม่ให้แถบลอยไปบังเนื้อหาตอนสุดท้าย */
     }
     ul#audioList li {
       margin: 10px 0;
@@ -41,11 +42,27 @@
       border-radius: 5px;
       cursor: pointer;
     }
+    
+    /* ตัวเครื่องเล่นเสียง */
     audio {
       display: block;
-      margin: 20px auto;
       width: 100%;
       max-width: 700px;
+      margin: 0 auto; /* จัดเครื่องเล่นให้อยู่กึ่งกลางกล่อง */
+      box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    /* แถบควบคุมสีครีมลอยติดหนึบด้านล่างจอ */
+    .audio-player-container {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #f9f3e7;
+      padding: 15px 20px;
+      box-sizing: border-box;
+      z-index: 1000;
+      border-top: 3px solid #6b4c2f;
     }
   </style>
 </head>
@@ -56,17 +73,18 @@
   โดยแบ่งโครงสร้างการพิจารณาออกเป็น ๑๔ บรรพ 
 </div>
 
-  <h1>📚 สติปัฎฐาน กายานุปัสสนา</h1>
- 
+<h1>📚 สติปัฎฐาน กายานุปัสสนา</h1>
 
-  <ul id="audioList"></ul>
+<ul id="audioList"></ul>
 
+<div class="audio-player-container">
   <audio id="audioPlayer" controls>
     <source src="">
     เบราว์เซอร์ของคุณไม่รองรับการเล่นเสียง
   </audio>
+</div>
 
- <script>
+<script>
   const episodes = [
     { title: "ตอนที่ ๑ ภาพรวม, การเจริญอานาปานสติในสมัยพุทธกาล, อธิบายสติปัฏฐานทั้ง ๔ จตุกะแบบคร่าวๆ", url: "https://archive.org/download/1-kaya/1-%20kaya.mp3" },
     { title: "ตอนที่ ๒ อารัมภบท, ขึ้นอานาปานสติบรรพที่ ๑, ความจำเป็นในการเลือกสถานที่อันเป็นสัปปายะ", url: "https://archive.org/download/1-kaya/2-kaya.mp3" },
